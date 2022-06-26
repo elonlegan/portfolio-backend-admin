@@ -1,0 +1,110 @@
+﻿<h1 *ngIf="isAddMode" class="text-3xl font-bold leading-7 mb-4 text-center">
+  Create Project
+</h1>
+<h1 *ngIf="!isAddMode" class="text-3xl font-bold leading-7 mb-4 text-center">
+  Edit Project
+</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="form-group col-12">
+      <label class="block text-gray-700 text-sm font-bold mb-2">Title</label>
+      <input
+        type="text"
+        formControlName="title"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.title.errors }"
+      />
+      <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+        <div *ngIf="f.title.errors.required">Title is required</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col">
+      <label class="block text-gray-700 text-sm font-bold mb-2">
+        Project Url
+      </label>
+      <input
+        type="url"
+        formControlName="url"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.url.errors }"
+      />
+      <div *ngIf="submitted && f.url.errors" class="invalid-feedback">
+        <div *ngIf="f.url.errors.required">Project Url is required</div>
+        <div *ngIf="f.url.errors.pattern">Not valid Url</div>
+      </div>
+    </div>
+    <div class="form-group col">
+      <label class="block text-gray-700 text-sm font-bold mb-2">
+        Repository Url
+      </label>
+      <input
+        type="url"
+        formControlName="repositoryUrl"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.repositoryUrl.errors }"
+      />
+      <div *ngIf="submitted && f.repositoryUrl.errors" class="invalid-feedback">
+        <div *ngIf="f.repositoryUrl.errors.required">
+          Repository Url is required
+        </div>
+        <div *ngIf="f.repositoryUrl.errors.pattern">Not valid Url</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col">
+      <label class="block text-gray-700 text-sm font-bold mb-2"> Date </label>
+      <input
+        type="date"
+        formControlName="date"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.date.errors }"
+      />
+      <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+        <div *ngIf="f.date.errors.required">Date is required</div>
+      </div>
+    </div>
+    <div class="form-group col">
+      <label class="block text-gray-700 text-sm font-bold">
+        Image
+        <p *ngIf="!isAddMode">Leave empty to keep the same image</p>
+      </label>
+
+      <input
+        (change)="onFileSelect($event)"
+        type="file"
+        formControlName="imageUrl"
+        class="form-control p-0"
+        accept="image/*"
+        [ngClass]="{
+          'is-invalid':
+            submitted && (f.imageUrl.errors || (isAddMode && !isValidImage))
+        }"
+      />
+      <div *ngIf="submitted && f.imageUrl.errors" class="invalid-feedback">
+        <div *ngIf="f.imageUrl.errors.required">Image is required</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button
+      [disabled]="loading"
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none"
+    >
+      <span
+        *ngIf="loading"
+        class="spinner-border spinner-border-sm mr-1"
+      ></span>
+      Save
+    </button>
+    <a
+      routerLink="/admin/projects"
+      class="btn btn-link inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+    >
+      Cancel
+    </a>
+  </div>
+</form>

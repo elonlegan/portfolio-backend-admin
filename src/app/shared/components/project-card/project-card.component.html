@@ -1,0 +1,59 @@
+<div class="rounded overflow-hidden shadow">
+  <img
+    class="w-full h-48 object-cover"
+    [src]="project.imageUrl"
+    alt="project image"
+  />
+  <div class="px-6 py-4">
+    <h3 class="font-bold text-3xl mb-2">{{ project.title }}</h3>
+    <p class="text-gray-700 text-base">
+      {{ week | week }}
+    </p>
+  </div>
+  <div class="px-6 py-4">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="mb-2">
+        <label class="block text-gray-700 text-sm font-bold mb-2"
+          >Work this week:</label
+        >
+        <input
+          type="number"
+          formControlName="hours"
+          class="form-control rounded"
+          min="1"
+          max="45"
+          [ngClass]="{ 'is-invalid': submitted && f.hours.errors }"
+        />
+        <div *ngIf="submitted && f.hours.errors" class="invalid-feedback">
+          <div *ngIf="f.hours.errors.required">Hours worked is required</div>
+          <div *ngIf="f.hours.errors.min">Hours worked must be more than 0</div>
+          <div *ngIf="f.hours.errors.max">
+            Hours worked must be less than 45
+          </div>
+        </div>
+      </div>
+      <button
+        *ngIf="!isEditingMode"
+        class="btn btn-sm btn-primary d-block w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        [disabled]="isSendingReport"
+      >
+        <span
+          *ngIf="isSendingReport"
+          class="spinner-border spinner-border-sm"
+        ></span>
+        <span *ngIf="!isSendingReport">Add</span>
+      </button>
+      <button
+        *ngIf="isEditingMode"
+        class="btn btn-sm btn-success d-block w-full text-white font-bold py-2 px-4 rounded"
+        [disabled]="isSendingReport"
+      >
+        <span
+          *ngIf="isSendingReport"
+          class="spinner-border spinner-border-sm"
+        ></span>
+        <span *ngIf="!isSendingReport">Edit</span>
+      </button>
+    </form>
+  </div>
+</div>
