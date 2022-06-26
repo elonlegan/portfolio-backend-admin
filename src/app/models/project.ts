@@ -4,9 +4,8 @@ export class Project {
   id: string;
   title: string;
   imageUrl: string;
-  startWeek: Week;
-  finishWeek: Week;
-  weeks: Week[];
+  date: Date;
+  url: Date;
+  repositoryUrl: Date;
   isDeleting?: boolean;
-  isSendingReport?: boolean;
 }
