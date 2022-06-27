@@ -2,33 +2,9 @@
   <div class="container">
     <h1 class="text-3xl font-bold leading-7 mb-4 text-center">Projects</h1>
     <div class="project-grid">
-      <div
-        class="rounded overflow-hidden shadow"
-        style="min-width: 300px"
-        *ngFor="let project of projects"
-      >
-        <img
-          class="w-full h-48 object-cover"
-          [src]="project.imageUrl"
-          alt="project image"
-        />
-        <div class="px-6 py-4">
-          <h3 class="font-bold text-3xl mb-2">{{ project.title }}</h3>
-          <p class="text-gray-700 text-base">
-            {{ project.date | date }}
-          </p>
-          <p>
-            <a class="text-gray-700 text-base" [href]="project.url">
-              <i class="bi bi-globe"></i> {{ project.url }}
-            </a>
-          </p>
-          <p>
-            <a class="text-gray-700 text-base" [href]="project.repositoryUrl">
-              <i class="bi bi-git"></i> {{ project.repositoryUrl }}
-            </a>
-          </p>
-        </div>
-      </div>
+      <ng-container *ngFor="let project of projects">
+        <app-project-card [project]="project"></app-project-card>
+      </ng-container>
     </div>
   </div>
 </div>

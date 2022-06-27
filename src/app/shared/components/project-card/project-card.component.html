@@ -10,12 +10,22 @@
       {{ project.date | date }}
     </p>
     <p>
-      <a class="text-gray-700 text-base" [href]="project.url">
+      <a
+        class="text-gray-700 text-base"
+        [href]="project.url"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <i class="bi bi-globe"></i> {{ project.url }}
       </a>
     </p>
     <p>
-      <a class="text-gray-700 text-base" [href]="project.repositoryUrl">
+      <a
+        class="text-gray-700 text-base"
+        [href]="project.repositoryUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <i class="bi bi-git"></i> {{ project.repositoryUrl }}
       </a>
     </p>
