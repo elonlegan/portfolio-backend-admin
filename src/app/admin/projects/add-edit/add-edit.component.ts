@@ -35,6 +35,7 @@ export class AddEditComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       title: ['', Validators.required],
+      description: ['', Validators.required],
       date: ['', Validators.required],
       url: ['', [Validators.required, Validators.pattern(this.urlRegex)]],
       repositoryUrl: [
@@ -55,6 +56,7 @@ export class AddEditComponent implements OnInit {
           this.form.patchValue({
             ...project,
             imageUrl: '',
+            date: project.date.toString().replace('T00:00:00.000Z', ''),
           });
         });
     }

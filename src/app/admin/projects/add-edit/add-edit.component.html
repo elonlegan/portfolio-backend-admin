@@ -88,6 +88,24 @@
       </div>
     </div>
   </div>
+  <div class="form-row">
+    <div class="form-group col">
+      <label class="block text-gray-700 text-sm font-bold mb-2">
+        Description
+      </label>
+      <textarea
+        name="description"
+        cols="30"
+        rows="10"
+        formControlName="description"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
+      ></textarea>
+      <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+        <div *ngIf="f.description.errors.required">Description is required</div>
+      </div>
+    </div>
+  </div>
 
   <div class="form-group">
     <button
