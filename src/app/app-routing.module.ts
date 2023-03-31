@@ -13,12 +13,15 @@ const profileModule = () =>
   import('./profile/profile.module').then((x) => x.ProfileModule);
 const projectsModule = () =>
   import('./projects/projects.module').then((x) => x.ProjectsModule);
+const skillsModule = () =>
+  import('./skills/skills.module').then((x) => x.SkillsModule);
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'account', loadChildren: accountModule },
   { path: 'profile', loadChildren: profileModule, canActivate: [AuthGuard] },
   { path: 'projects', loadChildren: projectsModule, canActivate: [AuthGuard] },
+  { path: 'skills', loadChildren: skillsModule, canActivate: [AuthGuard] },
   {
     path: 'admin',
     loadChildren: adminModule,

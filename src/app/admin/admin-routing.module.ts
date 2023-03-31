@@ -10,6 +10,9 @@ const accountsModule = () =>
 const projectsModule = () =>
   import('./projects/projects.module').then((x) => x.ProjectsModule);
 
+const skillsModule = () =>
+  import('./skills/skills.module').then((x) => x.SkillsModule);
+
 const routes: Routes = [
   {
     path: '',
@@ -18,6 +21,7 @@ const routes: Routes = [
       { path: '', component: OverviewComponent },
       { path: 'accounts', loadChildren: accountsModule },
       { path: 'projects', loadChildren: projectsModule },
+      { path: 'skills', loadChildren: skillsModule },
     ],
   },
 ];
