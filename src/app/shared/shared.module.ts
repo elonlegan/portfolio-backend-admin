@@ -6,6 +6,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { WeekPipe } from './pipes/week.pipe';
 import { ProjectCardComponent } from './components/project-card/project-card.component';
+import { SkillPillComponent } from './components/skill-pill/skill-pill.component';
 
 @NgModule({
   declarations: [
@@ -13,8 +14,15 @@ import { ProjectCardComponent } from './components/project-card/project-card.com
     FooterComponent,
     WeekPipe,
     ProjectCardComponent,
+    SkillPillComponent,
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule],
-  exports: [HeaderComponent, FooterComponent, WeekPipe, ProjectCardComponent],
+  exports: [
+    HeaderComponent,
+    FooterComponent,
+    WeekPipe,
+    ProjectCardComponent,
+    SkillPillComponent,
+  ],
 })
 export class SharedModule {}

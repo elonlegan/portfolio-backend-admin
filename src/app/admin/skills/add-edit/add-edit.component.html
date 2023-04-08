@@ -1,8 +1,8 @@
 ﻿<h1 *ngIf="isAddMode" class="text-3xl font-bold leading-7 mb-4 text-center">
-  Create Project
+  Create Skill
 </h1>
 <h1 *ngIf="!isAddMode" class="text-3xl font-bold leading-7 mb-4 text-center">
-  Edit Project
+  Edit Skill
 </h1>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="form-row">
@@ -22,7 +22,7 @@
   <div class="form-row">
     <div class="form-group col">
       <label class="block text-gray-700 text-sm font-bold mb-2">
-        Project Url
+        Certification Url
       </label>
       <input
         type="url"
@@ -31,39 +31,7 @@
         [ngClass]="{ 'is-invalid': submitted && f.url.errors }"
       />
       <div *ngIf="submitted && f.url.errors" class="invalid-feedback">
-        <div *ngIf="f.url.errors.required">Project Url is required</div>
         <div *ngIf="f.url.errors.pattern">Not valid Url</div>
-      </div>
-    </div>
-    <div class="form-group col">
-      <label class="block text-gray-700 text-sm font-bold mb-2">
-        Repository Url
-      </label>
-      <input
-        type="url"
-        formControlName="repositoryUrl"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.repositoryUrl.errors }"
-      />
-      <div *ngIf="submitted && f.repositoryUrl.errors" class="invalid-feedback">
-        <div *ngIf="f.repositoryUrl.errors.required">
-          Repository Url is required
-        </div>
-        <div *ngIf="f.repositoryUrl.errors.pattern">Not valid Url</div>
-      </div>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col">
-      <label class="block text-gray-700 text-sm font-bold mb-2"> Date </label>
-      <input
-        type="date"
-        formControlName="date"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.date.errors }"
-      />
-      <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
-        <div *ngIf="f.date.errors.required">Date is required</div>
       </div>
     </div>
     <div class="form-group col">
@@ -79,30 +47,33 @@
         class="form-control p-0"
         accept="image/*"
         [ngClass]="{
-          'is-invalid':
-            submitted && (f.imageUrl.errors || (isAddMode && !isValidImage))
+          'is-invalid': submitted && f.imageUrl.errors
         }"
       />
-      <div *ngIf="submitted && f.imageUrl.errors" class="invalid-feedback">
-        <div *ngIf="f.imageUrl.errors.required">Image is required</div>
-      </div>
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col">
       <label class="block text-gray-700 text-sm font-bold mb-2">
-        Description
+        Custom Styles
       </label>
       <textarea
-        name="description"
+        name="customStyles"
         cols="30"
         rows="10"
-        formControlName="description"
+        formControlName="customStyles"
         class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
+        [ngClass]="{ 'is-invalid': submitted && f.customStyles.errors }"
       ></textarea>
-      <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
-        <div *ngIf="f.description.errors.required">Description is required</div>
+      <div *ngIf="submitted && f.customStyles.errors" class="invalid-feedback">
+        <div *ngIf="f.customStyles.errors.required">
+          Custom styles is required
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-3 flex justify-center items-center">
+      <div class="block w-full">
+        <app-skill-pill [skill]="this.form.getRawValue()"></app-skill-pill>
       </div>
     </div>
   </div>

@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { Skill } from '@app/models';
 
-const baseUrl = `${environment.apiUrl}/projects`;
+const baseUrl = `${environment.apiUrl}/skills`;
 
 @Injectable({ providedIn: 'root' })
 export class SkillService {

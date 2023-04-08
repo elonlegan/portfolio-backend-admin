@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import { ProjectService, AlertService } from '@app/services';
+import { SkillService, AlertService } from '@app/services';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@environments/environment';
 
@@ -24,7 +24,7 @@ export class AddEditComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private projectService: ProjectService,
+    private skillService: SkillService,
     private alertService: AlertService,
     private http: HttpClient
   ) {}
@@ -35,28 +35,19 @@ export class AddEditComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       title: ['', Validators.required],
-      description: ['', Validators.required],
-      date: ['', Validators.required],
-      url: ['', [Validators.required, Validators.pattern(this.urlRegex)]],
-      repositoryUrl: [
-        '',
-        [Validators.required, Validators.pattern(this.urlRegex)],
-      ],
-      imageUrl: [
-        '',
-        this.isAddMode ? Validators.required : Validators.nullValidator,
-      ],
+      customStyles: [''],
+      url: ['', [Validators.pattern(this.urlRegex)]],
+      imageUrl: ['', this.isAddMode ? '' : Validators.nullValidator],
     });
 
     if (!this.isAddMode) {
-      this.projectService
+      this.skillService
         .getById(this.id)
         .pipe(first())
-        .subscribe((project) => {
+        .subscribe((skill) => {
           this.form.patchValue({
-            ...project,
+            ...skill,
             imageUrl: '',
-            date: project.date.toString().replace('T00:00:00.000Z', ''),
           });
         });
     }
@@ -80,9 +71,9 @@ export class AddEditComponent implements OnInit {
 
     this.loading = true;
     if (this.isAddMode) {
-      this.createProject();
+      this.createSkill();
     } else {
-      this.updateProject();
+      this.updateSkill();
     }
   }
 
@@ -96,22 +87,21 @@ export class AddEditComponent implements OnInit {
       } else {
         this.isValidImage = false;
         alert('Too large image, max 5MB');
-        // this.form.value.imageUrl = '';
         this.form.controls['imageUrl'].setValue('');
         this.image = '';
       }
     }
   }
 
-  private async createProject() {
+  private async createSkill() {
     try {
       await this.handleImageUpload();
-      this.projectService
+      this.skillService
         .create(this.form.value)
         .pipe(first())
         .subscribe({
           next: () => {
-            this.alertService.success('Project created successfully', {
+            this.alertService.success('Skill created successfully', {
               keepAfterRouteChange: true,
             });
             this.router.navigate(['../'], { relativeTo: this.route });
@@ -127,10 +117,10 @@ export class AddEditComponent implements OnInit {
     }
   }
 
-  private async updateProject() {
+  private async updateSkill() {
     try {
       await this.handleImageUpload();
-      this.projectService
+      this.skillService
         .update(this.id, this.form.value)
         .pipe(first())
         .subscribe({

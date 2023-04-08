@@ -1,10 +1,8 @@
 ﻿export class Skill {
-  id: string;
+  id?: string;
   title: string;
-  description: string;
+  url: string;
   imageUrl: string;
-  date: Date;
-  url: Date;
-  repositoryUrl: Date;
+  customStyles: string;
   isDeleting?: boolean;
 }
