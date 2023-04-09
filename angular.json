@@ -107,7 +107,6 @@
       }
     }
   },
-  "defaultProject": "angular-signup-verification-boilerplate",
   "schematics": {
     "@schematics/angular:component": {
       "styleext": "scss"
