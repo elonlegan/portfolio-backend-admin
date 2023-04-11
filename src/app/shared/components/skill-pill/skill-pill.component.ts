@@ -19,6 +19,6 @@ export class SkillPillComponent implements OnInit {
   }
 
   myStyle(): object {
-    return { 'background-color': 'blue' };
+    return { 'background-color': this.skill.color };
   }
 }

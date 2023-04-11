@@ -62,6 +62,7 @@ export class AddEditComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       title: ['', Validators.required],
+      color: ['#026fff'],
       customStyles: [''],
       url: ['', [Validators.pattern(this.urlRegex)]],
       imageUrl: ['', this.isAddMode ? '' : Validators.nullValidator],
