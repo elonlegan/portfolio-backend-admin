@@ -6,6 +6,7 @@ import { SkillsRoutingModule } from './skills-routing.module';
 import { ListComponent } from './list/list.component';
 import { AddEditComponent } from './add-edit/add-edit.component';
 import { SharedModule } from '@app/shared/shared.module';
+import { CodeEditorModule } from '@ngstack/code-editor';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { SharedModule } from '@app/shared/shared.module';
     ReactiveFormsModule,
     SkillsRoutingModule,
     SharedModule,
+    CodeEditorModule.forRoot(),
   ],
   declarations: [ListComponent, AddEditComponent],
 })

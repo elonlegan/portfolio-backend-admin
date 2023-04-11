@@ -1,30 +1,30 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 
-import { ProjectService } from '@app/services';
-import { Project } from '@app/models';
+import { SkillService } from '@app/services';
+import { Skill } from '@app/models';
 
 @Component({ templateUrl: 'list.component.html' })
 export class ListComponent implements OnInit {
-  projects: Project[];
+  skills: Skill[];
 
-  constructor(private projectService: ProjectService) {}
+  constructor(private skillService: SkillService) {}
 
   ngOnInit() {
-    this.projectService
+    this.skillService
       .getAll()
       .pipe(first())
-      .subscribe((projects) => (this.projects = projects));
+      .subscribe((skills) => (this.skills = skills));
   }
 
   deleteProject(id: string) {
-    const project = this.projects.find((x) => x.id === id);
+    const project = this.skills.find((x) => x.id === id);
     project.isDeleting = true;
-    this.projectService
+    this.skillService
       .delete(id)
       .pipe(first())
       .subscribe(() => {
-        this.projects = this.projects.filter((x) => x.id !== id);
+        this.skills = this.skills.filter((x) => x.id !== id);
       });
   }
 }

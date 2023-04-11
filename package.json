@@ -19,6 +19,7 @@
     "@angular/platform-browser": "^15.2.6",
     "@angular/platform-browser-dynamic": "^15.2.6",
     "@angular/router": "^15.2.6",
+    "@ngstack/code-editor": "^5.0.0",
     "moment": "^2.29.1",
     "rxjs": "^6.5.5",
     "tslib": "^2.0.0",

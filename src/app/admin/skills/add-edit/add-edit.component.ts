@@ -1,11 +1,16 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { SkillService, AlertService } from '@app/services';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@environments/environment';
+import { CodeModel } from '@ngstack/code-editor';
 
 @Component({ templateUrl: 'add-edit.component.html' })
 export class AddEditComponent implements OnInit {
@@ -19,6 +24,28 @@ export class AddEditComponent implements OnInit {
 
   urlRegex =
     /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
+
+  theme = 'vs-dark';
+
+  codeModel: CodeModel = {
+    language: 'css',
+    uri: 'main.css',
+    value: `.skill-pill#skill-title{\n}`,
+  };
+
+  options = {
+    contextmenu: false,
+    minimap: {
+      enabled: false,
+    },
+    scrollBeyondLastLine: false,
+    automaticLayout: true,
+  };
+
+  onCodeChanged(value) {
+    // console.log('CODE', value);
+    this.form.controls['customStyles'].setValue(value);
+  }
 
   constructor(
     private formBuilder: UntypedFormBuilder,
@@ -49,13 +76,46 @@ export class AddEditComponent implements OnInit {
             ...skill,
             imageUrl: '',
           });
+          this.updateCodeValue(skill.title, skill.customStyles);
         });
     }
+
+    this.updateCodeValue();
   }
 
   // convenience getter for easy access to form fields
   get f() {
     return this.form.controls;
+  }
+
+  updateCodeValue(
+    event = this.f.title.value,
+    codeValue = this.codeModel.value
+  ) {
+    console.log(event);
+
+    console.log(this.codeModel);
+    let value = this.getUpdatedValueCode(
+      codeValue,
+      this.camelize(event || 'skillTitle')
+    );
+    this.codeModel = {
+      ...this.codeModel,
+      value,
+    };
+    this.form.controls['customStyles'].setValue(value);
+  }
+
+  getUpdatedValueCode(value, title) {
+    return value.replace(/skill-pill#.*{/, `skill-pill#${title}{`);
+  }
+
+  camelize(str) {
+    return str
+      .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+        return index === 0 ? word.toLowerCase() : word.toUpperCase();
+      })
+      .replace(/\s+/g, '');
   }
 
   onSubmit() {
