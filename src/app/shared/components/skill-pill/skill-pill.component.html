@@ -1,8 +1,9 @@
 <a
+  [href]="skill.url"
+  target="_blank"
   class="skill-pill"
   rel="noopener noreferrer"
-  [ngStyle]="myStyle()"
-  (click)="showData()"
+  [style]="myStyle()"
 >
   {{ skill.title || "Skill Title" }}
 </a>

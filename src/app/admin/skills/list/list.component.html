@@ -6,60 +6,39 @@
   Create Skill
 </a>
 
-<div class="project-grid">
-  <div class="rounded overflow-hidden shadow" *ngFor="let project of skills">
+<div class="skill-grid">
+  <div
+    class="rounded overflow-hidden shadow flex items-center justify-between"
+    [ngStyle]="{ 'background-color': skill.color }"
+    *ngFor="let skill of skills"
+  >
     <img
-      class="w-full h-48 object-cover"
-      [src]="project.imageUrl"
-      alt="project image"
+      class="w-full h-14 w-14 object-cover"
+      [src]="skill.imageUrl"
+      alt="skill image"
     />
-    <div class="px-6 py-4">
-      <h3 class="font-bold text-3xl mb-2">{{ project.title }}</h3>
-      <p class="text-gray-700 text-base">
-        {{ project.date | date }}
-      </p>
-
-      <p>
-        <a
-          class="text-gray-700 text-base"
-          [href]="project.url"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <i class="bi bi-globe"></i> {{ project.url }}
-        </a>
-      </p>
-      <p>
-        <a
-          class="text-gray-700 text-base"
-          [href]="project.repositoryUrl"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <i class="bi bi-git"></i> {{ project.repositoryUrl }}
-        </a>
-      </p>
-      <p class="text-gray-700 text-base">
-        {{ project.description }}
-      </p>
+    <div class="px-2 py-2">
+      <h3 class="font-bold text-xl text-center text-slate-50">
+        {{ skill.title }}
+      </h3>
     </div>
-    <div class="px-6 py-4">
+    <div class="pe-2 py-2 flex">
       <a
-        routerLink="edit/{{ project.id }}"
-        class="btn btn-sm btn-primary mb-1 d-block w-full text-white font-bold py-2 px-4 rounded"
+        routerLink="edit/{{ skill.id }}"
+        class="btn btn-sm btn-primary me-1 d-block w-full text-white font-bold py-2 px-4 rounded shadow"
       >
         Edit
       </a>
       <button
-        (click)="deleteProject(project.id)"
-        class="btn btn-sm btn-danger d-block w-full text-white font-bold py-2 px-4 rounded"
-        [disabled]="project.isDeleting"
+        (click)="deleteProject(skill.id)"
+        class="btn btn-sm btn-danger d-block w-full text-white font-bold py-2 px-4 rounded shadow"
+        [disabled]="skill.isDeleting"
       >
         <span
-          *ngIf="project.isDeleting"
+          *ngIf="skill.isDeleting"
           class="spinner-border spinner-border-sm"
         ></span>
-        <span *ngIf="!project.isDeleting">Delete</span>
+        <span *ngIf="!skill.isDeleting">Delete</span>
       </button>
     </div>
   </div>

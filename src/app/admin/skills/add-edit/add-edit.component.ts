@@ -93,9 +93,6 @@ export class AddEditComponent implements OnInit {
     event = this.f.title.value,
     codeValue = this.codeModel.value
   ) {
-    console.log(event);
-
-    console.log(this.codeModel);
     let value = this.getUpdatedValueCode(
       codeValue,
       this.camelize(event || 'skillTitle')
