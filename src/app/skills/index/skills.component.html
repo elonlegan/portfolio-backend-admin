@@ -1,9 +1,20 @@
 ﻿<div class="p-4">
   <div class="container">
     <h1 class="text-3xl font-bold leading-7 mb-4 text-center">Skills</h1>
+    <a
+      *ngIf="account.role === Role.Admin"
+      routerLink="add"
+      class="btn btn-sm btn-success mb-4 text-white font-bold py-2 px-4 rounded"
+    >
+      Create Skill
+    </a>
     <div class="skill-grid">
       <ng-container *ngFor="let skill of skills">
-        <app-skill-card [skill]="skill"></app-skill-card>
+        <app-skill-card
+          [skill]="skill"
+          [account]="account"
+          (delete)="deleteSkill($event)"
+        ></app-skill-card>
       </ng-container>
     </div>
   </div>

@@ -33,4 +33,23 @@
       {{ project.description }}
     </p>
   </div>
+  <div *ngIf="account.role === Role.Admin" class="px-6 py-4">
+    <a
+      routerLink="edit/{{ project.id }}"
+      class="btn btn-sm btn-primary mb-1 d-block w-full text-white font-bold py-2 px-4 rounded"
+    >
+      Edit
+    </a>
+    <button
+      (click)="deleteProject(project.id)"
+      class="btn btn-sm btn-danger d-block w-full text-white font-bold py-2 px-4 rounded"
+      [disabled]="project.isDeleting"
+    >
+      <span
+        *ngIf="project.isDeleting"
+        class="spinner-border spinner-border-sm"
+      ></span>
+      <span *ngIf="!project.isDeleting">Delete</span>
+    </button>
+  </div>
 </div>

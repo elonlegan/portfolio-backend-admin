@@ -6,6 +6,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { WeekPipe } from './pipes/week.pipe';
 import { ProjectCardComponent } from './components/project-card/project-card.component';
+import { SkillCardComponent } from './components/skill-card/skill-card.component';
 import { SkillPillComponent } from './components/skill-pill/skill-pill.component';
 
 @NgModule({
@@ -14,6 +15,7 @@ import { SkillPillComponent } from './components/skill-pill/skill-pill.component
     FooterComponent,
     WeekPipe,
     ProjectCardComponent,
+    SkillCardComponent,
     SkillPillComponent,
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule],
@@ -22,6 +24,7 @@ import { SkillPillComponent } from './components/skill-pill/skill-pill.component
     FooterComponent,
     WeekPipe,
     ProjectCardComponent,
+    SkillCardComponent,
     SkillPillComponent,
   ],
 })
