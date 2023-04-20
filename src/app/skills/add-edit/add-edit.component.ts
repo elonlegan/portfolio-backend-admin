@@ -93,10 +93,7 @@ export class AddEditComponent implements OnInit {
     event = this.f.title.value,
     codeValue = this.codeModel.value
   ) {
-    let value = this.getUpdatedValueCode(
-      codeValue,
-      this.camelize(event || 'skillTitle')
-    );
+    let value = this.getUpdatedValueCode(codeValue, this.camelize(event));
     this.codeModel = {
       ...this.codeModel,
       value,
@@ -109,11 +106,7 @@ export class AddEditComponent implements OnInit {
   }
 
   camelize(str) {
-    return str
-      .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
-        return index === 0 ? word.toLowerCase() : word.toUpperCase();
-      })
-      .replace(/\s+/g, '');
+    return this.skillService.camelizeTitle(str);
   }
 
   onSubmit() {

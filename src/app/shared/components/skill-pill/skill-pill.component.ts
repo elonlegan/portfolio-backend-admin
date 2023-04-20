@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Skill } from '@app/models';
+import { SkillService } from '@app/services';
 
 @Component({
   selector: 'app-skill-pill',
@@ -10,16 +11,19 @@ import { Skill } from '@app/models';
 export class SkillPillComponent implements OnInit {
   @Input() skill: Skill;
 
-  constructor(private doms: DomSanitizer) {}
+  constructor(private doms: DomSanitizer, private skillService: SkillService) {}
 
   ngOnInit(): void {}
 
   myStyle(): object {
     let mySubString = this.skill.customStyles
-      .replaceAll(`.skill-pill#${this.skill.title}`, '')
+      .replaceAll(
+        `.skill-pill#${this.skillService.camelizeTitle(this.skill.title)}`,
+        ''
+      )
       .replaceAll('{', '')
       .replaceAll('}', '');
-    mySubString += `background-color: ${this.skill.color}; `;
+    mySubString = `background-color: ${this.skill.color}; ${mySubString}`;
 
     return this.doms.bypassSecurityTrustStyle(mySubString);
   }
