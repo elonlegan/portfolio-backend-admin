@@ -6,6 +6,7 @@ import { ProjectsRoutingModule } from './projects-routing.module';
 import { ProjectsComponent } from './index/projects.component';
 import { SharedModule } from '@app/shared/shared.module';
 import { AddEditComponent } from './add-edit/add-edit.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { AddEditComponent } from './add-edit/add-edit.component';
     ReactiveFormsModule,
     ProjectsRoutingModule,
     SharedModule,
+    NgMultiSelectDropDownModule.forRoot(),
   ],
   declarations: [ProjectsComponent, AddEditComponent],
 })

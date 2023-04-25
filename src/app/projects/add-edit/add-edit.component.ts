@@ -1,11 +1,16 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import { ProjectService, AlertService } from '@app/services';
+import { ProjectService, AlertService, SkillService } from '@app/services';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@environments/environment';
+import { Skill } from '@app/models';
 
 @Component({ templateUrl: 'add-edit.component.html' })
 export class AddEditComponent implements OnInit {
@@ -17,6 +22,18 @@ export class AddEditComponent implements OnInit {
   isValidImage: boolean = false;
   image: any;
 
+  skills: Skill[] = [];
+  selectedItems: any[] = [];
+  dropdownSettings: any = {
+    singleSelection: false,
+    idField: 'id',
+    textField: 'title',
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    enableCheckAll: false,
+    allowSearchFilter: true,
+  };
+
   urlRegex =
     /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
 
@@ -25,6 +42,7 @@ export class AddEditComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private projectService: ProjectService,
+    private skillService: SkillService,
     private alertService: AlertService,
     private http: HttpClient
   ) {}
@@ -32,6 +50,11 @@ export class AddEditComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
+
+    this.skillService
+      .getAll()
+      .pipe(first())
+      .subscribe((skills) => (this.skills = skills));
 
     this.form = this.formBuilder.group({
       title: ['', Validators.required],
@@ -46,6 +69,7 @@ export class AddEditComponent implements OnInit {
         '',
         this.isAddMode ? Validators.required : Validators.nullValidator,
       ],
+      skills: [''],
     });
 
     if (!this.isAddMode) {
