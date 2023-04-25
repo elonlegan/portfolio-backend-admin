@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { ProjectsRoutingModule } from './projects-routing.module';
 import { ProjectsComponent } from './index/projects.component';
 import { SharedModule } from '@app/shared/shared.module';
+import { AddEditComponent } from './add-edit/add-edit.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   imports: [
@@ -12,7 +14,8 @@ import { SharedModule } from '@app/shared/shared.module';
     ReactiveFormsModule,
     ProjectsRoutingModule,
     SharedModule,
+    NgMultiSelectDropDownModule.forRoot(),
   ],
-  declarations: [ProjectsComponent],
+  declarations: [ProjectsComponent, AddEditComponent],
 })
 export class ProjectsModule {}

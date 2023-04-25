@@ -4,7 +4,7 @@
       <div class="flex justify-between">
         <div class="flex space-x-7">
           <div>
-            <a href="#" class="flex items-center py-4 px-2">
+            <a href="/" class="flex items-center py-4 px-2">
               <span class="font-semibold text-white text-lg">
                 PortfolioBackend
               </span>
@@ -13,19 +13,18 @@
         </div>
         <div class="hidden md:flex items-center space-x-1">
           <a
-            routerLink="/"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-            class="py-4 px-2 text-gray-400 font-semibold nav-item nav-link"
-          >
-            Home
-          </a>
-          <a
             routerLink="/projects"
             routerLinkActive="active"
             class="py-4 px-2 text-gray-400 font-semibold transition duration-300 nav-item nav-link"
           >
             Projects
+          </a>
+          <a
+            routerLink="/skills"
+            routerLinkActive="active"
+            class="py-4 px-2 text-gray-400 font-semibold transition duration-300 nav-item nav-link"
+          >
+            Skills
           </a>
           <a
             routerLink="/profile"
@@ -36,11 +35,11 @@
           </a>
           <a
             *ngIf="account.role === Role.Admin"
-            routerLink="/admin"
+            routerLink="/accounts"
             routerLinkActive="active"
             class="py-4 px-2 text-gray-400 font-semibold transition duration-300 nav-item nav-link"
           >
-            Admin
+            Accounts
           </a>
           <a
             (click)="logout()"

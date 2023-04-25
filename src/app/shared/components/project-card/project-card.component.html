@@ -7,7 +7,7 @@
   <div class="px-6 py-4">
     <h3 class="font-bold text-3xl mb-2">{{ project.title }}</h3>
     <p class="text-gray-700 text-base">
-      {{ project.date | date }}
+      {{ project.date | date : "shortDate" }}
     </p>
     <p>
       <a
@@ -16,7 +16,7 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <i class="bi bi-globe"></i> {{ project.url }}
+        <i class="bi bi-globe"></i> {{ project.url | truncate : [29] }}
       </a>
     </p>
     <p>
@@ -26,11 +26,30 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <i class="bi bi-git"></i> {{ project.repositoryUrl }}
+        <i class="bi bi-git"></i> {{ project.repositoryUrl | truncate : [29] }}
       </a>
     </p>
     <p class="text-gray-700 text-base">
       {{ project.description }}
     </p>
+  </div>
+  <div *ngIf="account.role === Role.Admin" class="px-6 py-4">
+    <a
+      routerLink="edit/{{ project.id }}"
+      class="btn btn-sm btn-primary mb-1 d-block w-full text-white font-bold py-2 px-4 rounded"
+    >
+      Edit
+    </a>
+    <button
+      (click)="onDelete(project.id)"
+      class="btn btn-sm btn-danger d-block w-full text-white font-bold py-2 px-4 rounded"
+      [disabled]="project.isDeleting"
+    >
+      <span
+        *ngIf="project.isDeleting"
+        class="spinner-border spinner-border-sm"
+      ></span>
+      <span *ngIf="!project.isDeleting">Delete</span>
+    </button>
   </div>
 </div>

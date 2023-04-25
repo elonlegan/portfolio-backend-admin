@@ -2,18 +2,20 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-import { ProjectsRoutingModule } from './projects-routing.module';
-import { ListComponent } from './list/list.component';
+import { SkillsRoutingModule } from './skills-routing.module';
+import { SkillsComponent } from './index/skills.component';
 import { AddEditComponent } from './add-edit/add-edit.component';
 import { SharedModule } from '@app/shared/shared.module';
+import { CodeEditorModule } from '@ngstack/code-editor';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    ProjectsRoutingModule,
+    SkillsRoutingModule,
     SharedModule,
+    CodeEditorModule.forRoot(),
   ],
-  declarations: [ListComponent, AddEditComponent],
+  declarations: [SkillsComponent, AddEditComponent],
 })
-export class ProjectsModule {}
+export class SkillsModule {}

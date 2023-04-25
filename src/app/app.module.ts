@@ -10,6 +10,8 @@ import { AppComponent } from './app.component';
 import { AlertComponent } from './components';
 import { HomeComponent } from './home';
 import { SharedModule } from './shared/shared.module';
+import { CodeEditorModule } from '@ngstack/code-editor';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   imports: [
@@ -19,6 +21,8 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     SharedModule,
     FormsModule,
+    CodeEditorModule.forRoot(),
+    NgMultiSelectDropDownModule.forRoot(),
   ],
   declarations: [AppComponent, AlertComponent, HomeComponent],
   providers: [

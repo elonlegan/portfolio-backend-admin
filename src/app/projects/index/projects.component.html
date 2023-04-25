@@ -1,9 +1,20 @@
 ﻿<div class="p-4">
   <div class="container">
     <h1 class="text-3xl font-bold leading-7 mb-4 text-center">Projects</h1>
+    <a
+      *ngIf="account.role === Role.Admin"
+      routerLink="add"
+      class="btn btn-sm btn-success mb-4 text-white font-bold py-2 px-4 rounded"
+    >
+      Create Project
+    </a>
     <div class="project-grid">
       <ng-container *ngFor="let project of projects">
-        <app-project-card [project]="project"></app-project-card>
+        <app-project-card
+          [project]="project"
+          [account]="account"
+          (delete)="deleteProject($event)"
+        ></app-project-card>
       </ng-container>
     </div>
   </div>

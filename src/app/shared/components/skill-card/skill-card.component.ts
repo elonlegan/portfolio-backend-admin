@@ -1,15 +1,15 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
-import { Account, Project, Role } from '@app/models';
+import { Account, Role, Skill } from '@app/models';
 
 @Component({
-  selector: 'app-project-card',
-  templateUrl: './project-card.component.html',
-  styleUrls: ['./project-card.component.scss'],
+  selector: 'app-skill-card',
+  templateUrl: './skill-card.component.html',
+  styleUrls: ['./skill-card.component.scss'],
 })
-export class ProjectCardComponent implements OnInit {
+export class SkillCardComponent implements OnInit {
   Role = Role;
-  @Input() project: Project;
+  @Input() skill: Skill;
   @Input() account: Account;
   @Output() delete: EventEmitter<any> = new EventEmitter();
 

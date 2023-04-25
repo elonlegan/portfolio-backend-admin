@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ProjectsComponent } from './index/projects.component';
+import { SkillsComponent } from './index/skills.component';
 import { AddEditComponent } from './add-edit/add-edit.component';
 import { AuthGuard } from '@app/helpers';
 import { Role } from '@app/models';
@@ -9,8 +9,8 @@ import { Role } from '@app/models';
 const routes: Routes = [
   {
     path: '',
-    component: ProjectsComponent,
-    children: [{ path: '', component: ProjectsComponent }],
+    component: SkillsComponent,
+    children: [{ path: '', component: SkillsComponent }],
   },
   {
     path: 'add',
@@ -30,4 +30,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ProjectsRoutingModule {}
+export class SkillsRoutingModule {}
