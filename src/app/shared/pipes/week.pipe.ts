@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Week } from '@app/models';
-import * as moment from 'moment';
 
 @Pipe({
-  name: 'week',
+  name: 'truncate',
 })
-export class WeekPipe implements PipeTransform {
-  transform(week: Week): string {
-    return moment(week.value).format('[Week of] MMMM D, YYYY ');
+export class TruncatePipe implements PipeTransform {
+  transform(value: string, args: any[]): string {
+    const limit = args.length > 0 ? parseInt(args[0], 10) : 20;
+    const trail = args.length > 1 ? args[1] : '...';
+    return value.length > limit ? value.substring(0, limit) + trail : value;
   }
 }

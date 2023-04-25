@@ -16,7 +16,7 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <i class="bi bi-globe"></i> {{ project.url }}
+        <i class="bi bi-globe"></i> {{ project.url | truncate : [29] }}
       </a>
     </p>
     <p>
@@ -26,7 +26,7 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <i class="bi bi-git"></i> {{ project.repositoryUrl }}
+        <i class="bi bi-git"></i> {{ project.repositoryUrl | truncate : [29] }}
       </a>
     </p>
     <p class="text-gray-700 text-base">
