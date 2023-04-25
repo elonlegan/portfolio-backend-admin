@@ -30,7 +30,7 @@ export class AddEditComponent implements OnInit {
   codeModel: CodeModel = {
     language: 'css',
     uri: 'main.css',
-    value: `.skill-pill#skill-title{\n}`,
+    value: `.skill-pill.skill-pill--skillTitle{\n}`,
   };
 
   options = {
@@ -102,7 +102,10 @@ export class AddEditComponent implements OnInit {
   }
 
   getUpdatedValueCode(value, title) {
-    return value.replace(/skill-pill#.*{/, `skill-pill#${title}{`);
+    console.log(value);
+    console.log(value.replace(/.skill-pill--.*{/, `.skill-pill--${title}{`));
+
+    return value.replace(/.skill-pill--.*{/, `.skill-pill--${title}{`);
   }
 
   camelize(str) {

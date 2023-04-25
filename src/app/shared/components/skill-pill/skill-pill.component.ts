@@ -18,9 +18,10 @@ export class SkillPillComponent implements OnInit {
   myStyle(): object {
     let mySubString = this.skill.customStyles
       .replaceAll(
-        `.skill-pill#${this.skillService.camelizeTitle(this.skill.title)}`,
+        `.skill-pill--${this.skillService.camelizeTitle(this.skill.title)}`,
         ''
       )
+      .replaceAll('.skill-pill', '')
       .replaceAll('{', '')
       .replaceAll('}', '');
     mySubString = `background-color: ${this.skill.color}; ${mySubString}`;
