@@ -73,19 +73,19 @@
     <div [ngClass]="{ hidden: responsiveMenu }" class="transition duration-300">
       <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 md:hidden">
         <a
-          routerLink="/"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-          class="cursor-pointer text-gray-400 block px-3 py-2 rounded-md text-base font-medium transition duration-300 nav-item nav-link"
-        >
-          Home
-        </a>
-        <a
           routerLink="/projects"
           routerLinkActive="active"
           class="cursor-pointer text-gray-400 block px-3 py-2 rounded-md text-base font-medium transition duration-300 nav-item nav-link"
         >
           Projects
+        </a>
+        <a
+          routerLink="/skills"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="cursor-pointer text-gray-400 block px-3 py-2 rounded-md text-base font-medium transition duration-300 nav-item nav-link"
+        >
+          Skills
         </a>
         <a
           routerLink="/profile"
@@ -96,11 +96,11 @@
         </a>
         <a
           *ngIf="account.role === Role.Admin"
-          routerLink="/admin"
+          routerLink="/accounts"
           routerLinkActive="active"
           class="cursor-pointer text-gray-400 block px-3 py-2 rounded-md text-base font-medium transition duration-300 nav-item nav-link"
         >
-          Admin
+          Accounts
         </a>
 
         <a
